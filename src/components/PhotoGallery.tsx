@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
+import mama1 from "@/assets/mama-1.jpeg";
+import mama2 from "@/assets/mama-2.jpeg";
 
 const PHOTOS = [
-  { caption: "Your smile, my favorite sight", color: "from-pink to-peach" },
-  { caption: "Forever my safe place", color: "from-baby-blue to-lavender" },
-  { caption: "The heart of our home", color: "from-lavender to-pink" },
-  { caption: "My first best friend", color: "from-peach to-cream" },
+  { caption: "Your smile, my favorite sight", color: "from-pink to-peach", src: mama1 },
+  { caption: "Forever my safe place", color: "from-baby-blue to-lavender", src: mama2 },
+  { caption: "The heart of our home", color: "from-lavender to-pink", src: mama1 },
+  { caption: "My first best friend", color: "from-peach to-cream", src: mama2 },
 ];
 
 export function PhotoGallery() {
@@ -32,17 +34,13 @@ export function PhotoGallery() {
             transition={{ delay: i * 0.15, type: "spring" }}
             className="bg-white p-4 pb-14 shadow-polaroid w-60"
           >
-            <div className={`relative aspect-square w-full rounded-sm bg-gradient-to-br ${p.color} flex items-center justify-center text-6xl`}>
-              <span className="opacity-70">📷</span>
-              <span className="absolute bottom-2 right-2 text-xs text-foreground/50 italic">add photo</span>
+            <div className={`relative aspect-square w-full overflow-hidden rounded-sm bg-gradient-to-br ${p.color}`}>
+              <img src={p.src} alt={p.caption} className="h-full w-full object-cover" loading="lazy" />
             </div>
             <p className="mt-4 text-center font-handwritten text-xl text-rose">{p.caption}</p>
           </motion.div>
         ))}
       </div>
-      <p className="mt-8 text-center text-sm text-muted-foreground italic">
-        Tip: replace the placeholders with your favorite photos of mama 💕
-      </p>
     </section>
   );
 }
